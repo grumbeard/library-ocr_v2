@@ -17,6 +17,7 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import searchbar from '../components/search';
+import book from '../components/book'
 
 document.addEventListener('turbolinks:load', function () {
   // Initialize Searchbar if present
@@ -24,5 +25,11 @@ document.addEventListener('turbolinks:load', function () {
   const reader = document.querySelector(".reader-text-viewer");
   if (searchbox !== null && reader !== null) {
     searchbar.init(searchbox, reader);
+  }
+
+  // Initialize Buttons if present
+  const addBookBtn = document.querySelector("#add-book-btn");
+  if (addBookBtn !== null) {
+    addBookBtn.addEventListener("click", book.handleAddBook);
   }
 });

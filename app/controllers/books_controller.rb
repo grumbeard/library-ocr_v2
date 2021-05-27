@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
   require 'pdf/reader'
+  include Rails.application.routes.url_helpers
 
   def index
     @books = Book.all
+    @book = Book.new
   end
 
   def show
@@ -12,14 +14,9 @@ class BooksController < ApplicationController
 
   def create
     book = Book.new(book_params)
-    book.content.attach(params[:content])
-    if book.content
-      book.parse_pdf(book, book.content)
-      if book.save
-        redirect_to book_path(book)
-      else
-        render :new
-      end
+    book.content.attach(params[:book][:content])
+    if book.save
+      redirect_to book_path(book)
     else
       render :new
     end
@@ -40,18 +37,7 @@ class BooksController < ApplicationController
 
   private
 
-  def parse_pdf(book, pdf)
-    # Create Text version of book
-    book.text = ''
-
-    PDF::Reader.open(pdf) do |reader|
-      reader.pages.each do |page|
-        book.text << page.text
-      end
-    end
-  end
-
   def book_params
-    params.require(:book).permit(:title, :content)
+    params.require(:book).permit(:title, :author, :content)
   end
 end
