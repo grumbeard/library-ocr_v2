@@ -15,3 +15,14 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import searchbar from '../components/search';
+
+document.addEventListener('turbolinks:load', function () {
+  // Initialize Searchbar if present
+  const searchbox = document.querySelector(".searchbar");
+  const reader = document.querySelector(".reader-text-viewer");
+  if (searchbox !== null && reader !== null) {
+    searchbar.init(searchbox, reader);
+  }
+});

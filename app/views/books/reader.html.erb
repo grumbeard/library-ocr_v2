@@ -1,0 +1,16 @@
+<%= render 'shared/searchbar' %>
+
+
+<iframe srcdoc='
+  <div class="reader-text-container">
+  <% @book.text.split("\n\n").each do |line| %>
+    <p><%= line %></p>
+  <% end %>
+  </div>'
+
+  width="700" height="780" style="border: none;" class="reader-text-viewer"
+></iframe>
+
+<div class="pdf-view-btn btn">
+  <%= link_to "PDF View", book_path(@book) %>
+</div>

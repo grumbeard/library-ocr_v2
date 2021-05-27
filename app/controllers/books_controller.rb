@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  require 'pdf/reader'
+
   def index
     @books = Book.all
   end
@@ -10,9 +12,14 @@ class BooksController < ApplicationController
 
   def create
     book = Book.new(book_params)
-    if book.save
-      book.content.attach(params[:content])
-      redirect_to book_path(book)
+    book.content.attach(params[:content])
+    if book.content
+      book.parse_pdf(book, book.content)
+      if book.save
+        redirect_to book_path(book)
+      else
+        render :new
+      end
     else
       render :new
     end
@@ -27,7 +34,22 @@ class BooksController < ApplicationController
     end
   end
 
+  def reader
+    @book = Book.find(params[:book_id])
+  end
+
   private
+
+  def parse_pdf(book, pdf)
+    # Create Text version of book
+    book.text = ''
+
+    PDF::Reader.open(pdf) do |reader|
+      reader.pages.each do |page|
+        book.text << page.text
+      end
+    end
+  end
 
   def book_params
     params.require(:book).permit(:title, :content)
