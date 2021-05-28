@@ -13,26 +13,61 @@ puts 'Destroyed all books'
 
 puts 'Creating Book'
 pdf_prefix = Rails.root.join('app', 'assets', 'documents')
-book = Book.new(
-  title: 'Lorem Tales'
-)
-book.content.attach(io: File.open(pdf_prefix.join('sample_book.pdf')), filename: 'sample_book.pdf', content_type: 'application/pdf')
-if book.content
 
-  # Create Text version of book
-  book.text = ''
+adjectives = [
+  "different",
+  "useful",
+  "old",
+  "healthy",
+  "electrical",
+  "expensive",
+  "intelligent",
+  "interesting",
+  "happy",
+  "wonderful",
+  "competivie",
+  "environmental",
+  "powerful",
+  "unusual",
+  "cultural",
+  "scared",
+  "aggressive",
+  "boring",
+  "amazing",
+  "poor"
+]
 
-  PDF::Reader.open(pdf_prefix.join('sample_book.pdf')) do |reader|
-    reader.pages.each do |page|
-      book.text << page.text
+nouns = [
+  "bird",
+  "work",
+  "story",
+  "color"
+]
+
+filenames = [ "sample_book.pdf", "sample_book_long.pdf" ]
+
+(1..24).each do
+  book = Book.new(
+    title: "#{adjectives[rand(0..19)]} #{nouns[rand(0..3)]}"
+  )
+  book.content.attach(io: File.open(pdf_prefix.join(filenames[rand(0..1)])), filename: 'sample_book.pdf', content_type: 'application/pdf')
+  if book.content
+
+    # Create Text version of book
+    book.text = ''
+
+    PDF::Reader.open(pdf_prefix.join('sample_book.pdf')) do |reader|
+      reader.pages.each do |page|
+        book.text << page.text
+      end
     end
-  end
 
-  if book.save
-    puts 'Lorem Tales created'
+    if book.save
+      puts "#{book.title} created"
+    else
+      puts 'Failed to create Lorem Tales'
+    end
   else
     puts 'Failed to create Lorem Tales'
   end
-else
-  puts 'Failed to create Lorem Tales'
 end

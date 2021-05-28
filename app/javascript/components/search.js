@@ -24,7 +24,7 @@ const searchbar = (function () {
 
     let found = false;
 
-    sourceBody.childNodes.forEach(element => {
+    sourceBody.querySelectorAll("p").forEach(element => {
       if (element.innerText.match(regex)) {
         let text = element.innerT
         element.innerHTML = element.innerHTML.replace(regex, _highlightText);
@@ -40,7 +40,7 @@ const searchbar = (function () {
 
   function _highlightText(match) {
     // Preserve capitalization and add highlight effect
-    let text = `<a class="search-query"><b>${match}</b></a>`
+    let text = `<span class="search-query" style="background-color: #313131; padding: 0 5px;"><b>${match}</b></span>`
     return text;
   }
 

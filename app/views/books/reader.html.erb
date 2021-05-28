@@ -1,16 +1,27 @@
-<%= render 'shared/searchbar' %>
+<header>
+  <%= render 'shared/searchbar' %>
+</header>
 
-
+<div class="reader-container">
 <iframe srcdoc='
-  <div class="reader-text-container">
-  <% @book.text.split("\n\n").each do |line| %>
-    <p><%= line %></p>
-  <% end %>
-  </div>'
+    <html style="height: 100%;">
+      <head>
+        <body style="height: 100%; line-height: 24px;">
+          <div class="reader-text-container" style="max-width: 80vw; height: 100%; padding: 16px 32px; margin: 0 auto; background-color: #555555; color: #EFEFEF;">
+          <% @book.text.split("\n\n").each do |line| %>
+            <p><%= line %></p>
+          <% end %>
+          </div>
+        </body>
+      </head>
+    </html>'
 
-  width="700" height="780" style="border: none;" class="reader-text-viewer"
-></iframe>
+    class="reader-text-viewer"
+  ></iframe>
+</div>
 
 <div class="pdf-view-btn btn">
-  <%= link_to "PDF View", book_path(@book) %>
+  <%= link_to book_path(@book) do %>
+    <span class="material-icons">auto_stories</span>
+  <% end %>
 </div>

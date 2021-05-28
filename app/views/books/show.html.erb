@@ -1,11 +1,17 @@
-<h1><%= @book.title %></h1>
+<header>
+  <h1><%= @book.title %></h1>
+</header>
 
-<iframe src=<%= url_for(@book.content) %> width="700" height="780" style="border: none;" class="pdf-viewer"></iframe>
-
-<div class="reader-view-btn btn">
-  <%= link_to "Reader View", book_reader_path(@book) %>
+<div class="reader-container">
+  <iframe src=<%= url_for(@book.content) %> class="pdf-viewer"></iframe>
 </div>
 
-<div class="collections-view-btn btn">
-  <%= link_to "Back", books_path %>
+<% if @book.thumbnail.attached? %>
+  <%= image_tag url_for(@book.thumbnail), class: "book-thumbnail" %>
+<% end %>
+
+<div class="reader-view-btn btn">
+  <%= link_to book_reader_path(@book) do %>
+  <span class="material-icons">library_books</span>
+  <% end %>
 </div>

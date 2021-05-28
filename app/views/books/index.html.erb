@@ -1,27 +1,30 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
-
-<ul>
+<header>
+  <div id="add-book-btn" class="btn">
+    <span class="material-icons">add_box</span>
+  </div>
+</header>
+<div id="books-container">
   <% @books.each do |book| %>
-    <li>
+    <div class="book">
       <%= link_to book do %>
-        <%= book.title %>
+        <div class="overlay hide">
+          <p class="book-title"><%= book.title %></p>
+        </div>
+        <%= image_tag("https://source.unsplash.com/300x300/?sig=#{rand(1..100)}/&#{book.title}", class: "book-image") %>
       <% end %>
-    </li>
+    </div>
   <% end %>
-</ul>
-
-<div id="add-book-btn" class="btn">
-  Add Book
 </div>
 
-<%= form_with model: @book, html: {class: "hide", id: "add-book-form"} do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :author %>
-  <%= f.text_field :author %>
-  <%= f.label :book %>
-  <%= f.file_field :content %>
-  <%= f.hidden_field :content, value: f.object.content.signed_id if f.object.content.attached? %>
-  <%= f.submit 'Add Book' %>
-<% end %>
+<div class="pop-up-container hide">
+  <%= form_with model: @book, html: {id: "add-book-form"} do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+    <%= f.label :book %>
+    <%= f.file_field :content, class: "btn" %>
+    <%= f.hidden_field :content, value: f.object.content.signed_id if f.object.content.attached? %>
+    <%= f.submit 'Add Book', class: "btn" %>
+  <% end %>
+</div>

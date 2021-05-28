@@ -13,3 +13,45 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: #464646;
+}
+
+header, footer {
+  height: 10vh;
+  background-color: rgb(147, 149, 151);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 20;
+}
+
+header {
+  top: 0;
+}
+
+footer {
+  bottom: 0;
+}
+
+a, a:visited, .btn {
+  color: rgb(245, 223, 77);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover, .btn:hover {
+  color: rgb(230, 206, 47);
+  text-decoration: none;
+  cursor: pointer;
+}

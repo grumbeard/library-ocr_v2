@@ -30,6 +30,16 @@ document.addEventListener('turbolinks:load', function () {
   // Initialize Buttons if present
   const addBookBtn = document.querySelector("#add-book-btn");
   if (addBookBtn !== null) {
-    addBookBtn.addEventListener("click", book.handleAddBook);
+    addBookBtn.addEventListener("click", book.toggleAddBook);
+  }
+
+  // Initialize Books if present
+  const booksContainer = document.querySelector("#books-container");
+  if (booksContainer !== null) {
+    const books = booksContainer.querySelectorAll(".book");
+    books.forEach(bk => {
+      bk.addEventListener("mouseenter", book.handleMouseOver);
+      bk.addEventListener("mouseleave", book.handleMouseOut);
+    });
   }
 });

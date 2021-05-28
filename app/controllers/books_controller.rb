@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   require 'pdf/reader'
-  include Rails.application.routes.url_helpers
+  require 'RMagick'
 
   def index
     @books = Book.all
@@ -14,7 +14,15 @@ class BooksController < ApplicationController
 
   def create
     book = Book.new(book_params)
+    # Save PDF
     book.content.attach(params[:book][:content])
+    # Extract first page as thumbnail
+    pdf_images = Magick::ImageList.new(File.open(params[:book][:content]))
+    first_page = pdf_images.first
+    filename = params[:book][:content].original_filename.gsub('.pdf', '.jpeg')
+    # thumb = first_page.write(Rails.root.join('app', 'assets', 'images', filename))
+    book.thumbnail.attach(io: StringIO.new(first_page.to_s), filename: filename)
+
     if book.save
       redirect_to book_path(book)
     else

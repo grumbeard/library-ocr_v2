@@ -7,9 +7,17 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
   <body>
     <%= yield %>
+    <footer>
+      <div class="collections-view-btn btn">
+        <%= link_to books_path do %>
+          <span class="material-icons">home</span>
+        <% end %>
+      </div>
+    </footer>
   </body>
 </html>
