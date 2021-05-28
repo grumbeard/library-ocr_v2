@@ -11,8 +11,6 @@ const book = (function () {
   }
 
   function handleMouseOver(e) {
-    console.log(e);
-    console.log(e.target.querySelector(".overlay"));
     let overlay = e.target.querySelector(".overlay");
     if (overlay.classList.contains("hide")) overlay.classList.remove("hide");
   }

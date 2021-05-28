@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  require 'rmagick'
+  require 'RMagick'
 
   after_commit :parse_pdf
   # after_commit :create_thumbnail
@@ -9,7 +9,7 @@ class Book < ApplicationRecord
   private
 
   def parse_pdf
-    return if text_previously_changed? || destroyed?
+    return if text_previously_changed?
 
     tmp_text = ''
 
@@ -19,7 +19,7 @@ class Book < ApplicationRecord
         tmp_text << page.text
       end
     end
-    update! text: tmp_text unless destroyed?
+    update! text: tmp_text
   end
 
   # def create_thumbnail
