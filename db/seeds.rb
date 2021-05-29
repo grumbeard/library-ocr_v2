@@ -53,13 +53,14 @@ filenames = [ "sample_book.pdf", "sample_book_long.pdf" ]
     title: "#{adjectives[rand(0..19)]} #{nouns[rand(0..3)]}",
     author: "Author Unknown"
   )
-  book.content.attach(io: File.open(pdf_prefix.join(filenames[rand(0..1)])), filename: 'sample_book.pdf', content_type: 'application/pdf')
+  filename = filenames[rand(0..1)]
+  book.content.attach(io: File.open(asset_pack_path(filename)), filename: 'sample_book.pdf', content_type: 'application/pdf')
   if book.content
 
     # Create Text version of book
     book.text = []
 
-    PDF::Reader.open(pdf_prefix.join('sample_book.pdf')) do |reader|
+    PDF::Reader.open(asset_pack_path(filename)) do |reader|
       reader.pages.each do |page|
         book.text << page.text
       end
