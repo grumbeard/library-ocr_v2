@@ -33,7 +33,7 @@ header, footer {
   align-items: center;
   position: -webkit-sticky;
   position: sticky;
-  z-index: 50;
+  z-index: 30;
 }
 
 header {
