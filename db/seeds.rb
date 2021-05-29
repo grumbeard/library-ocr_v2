@@ -12,9 +12,7 @@ Book.destroy_all
 puts 'Destroyed all books'
 
 puts 'Creating Book'
-# NOTE: Precompile must be run to get assets in public folder
-# Need to run: RAILS_ENV=production bin/rake assets:precompile
-pdf_prefix = Rails.root.join('public', 'assets')
+pdf_prefix = Rails.root.join('app', 'assets', 'documents')
 
 adjectives = [
   "different",
