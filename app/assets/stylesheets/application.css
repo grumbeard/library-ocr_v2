@@ -23,6 +23,14 @@ body {
   flex-direction: column;
   position: relative;
   color: #464646;
+  font-size: 1em;
+  font-family: Helvetica, Sans-Serif;
+}
+
+@media (max-device-width: 400px) {
+  body {
+    font-size: 32px;
+  }
 }
 
 header, footer {
@@ -55,3 +63,8 @@ a:hover, .btn:hover {
   text-decoration: none;
   cursor: pointer;
 }
+
+input[type="text"] {
+  font-size: 1em;
+}
+
