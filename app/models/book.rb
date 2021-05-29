@@ -11,7 +11,7 @@ class Book < ApplicationRecord
   def parse_pdf
     return if text_previously_changed?
 
-    tmp_text = ''
+    tmp_text = []
 
     content.open do |file|
       reader = PDF::Reader.new(file)
