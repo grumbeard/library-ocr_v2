@@ -2,7 +2,7 @@
   <h1><%= @book.title %></h1>
 </header>
 
-<div class="reader-container">
+<div class="reader-container reader-pdf-container">
   <iframe src=<%= url_for(@book.content) %> class="pdf-viewer"></iframe>
 </div>
 

@@ -2,12 +2,12 @@
   <%= render 'shared/searchbar' %>
 </header>
 
-<div class="reader-container">
+<div class="reader-container reader-text-container">
 <iframe srcdoc='
-    <html style="height: 100%;">
+    <html style="min-height: 80vh;">
       <head>
-        <body style="height: 100%; line-height: 24px;">
-          <div class="reader-text-container" style="max-width: 80vw; height: 100%; padding: 16px 32px; margin: 0 auto; background-color: #555555; color: #EFEFEF;">
+        <body style="min-height: 80vh; line-height: 24px;">
+          <div class="reader-text-container" style="max-width: 80vw; min-height: 80vh; padding: 16px 32px; margin: 0 auto; background-color: #555555; color: #EFEFEF;">
           <% @book.text.each do |line| %>
             <p><%= line %></p>
           <% end %>

@@ -105,9 +105,16 @@ h1 {
 .reader-container {
   flex-grow: 1;
   margin: 0 auto;
-  height: 80vh;
   width: 100%;
   background-color: rgb(49, 49, 49);
+}
+
+.reader-pdf-container {
+  height: 80vh;
+}
+
+.reader-text-container {
+  min-height: 80vh;
 }
 
 .pdf-viewer, .reader-text-viewer {
@@ -125,6 +132,7 @@ h1 {
 
 .reader-text-viewer {
   line-height: 1.5em;
+  min-height: 80vh;
 }
 
 // MAIN - SEARCHBAR
