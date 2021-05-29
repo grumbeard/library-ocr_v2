@@ -48,7 +48,8 @@ filenames = [ "sample_book.pdf", "sample_book_long.pdf" ]
 
 (1..24).each do
   book = Book.new(
-    title: "#{adjectives[rand(0..19)]} #{nouns[rand(0..3)]}"
+    title: "#{adjectives[rand(0..19)]} #{nouns[rand(0..3)]}",
+    author: "Author Unknown"
   )
   book.content.attach(io: File.open(pdf_prefix.join(filenames[rand(0..1)])), filename: 'sample_book.pdf', content_type: 'application/pdf')
   if book.content

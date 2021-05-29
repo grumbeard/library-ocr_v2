@@ -3,6 +3,14 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 // HEADER
+#book-info-header {
+  flex-direction: column;
+}
+
+#book-info-header * {
+  margin: 0;
+  padding: 0;
+}
 
 // MAIN - INDEX
 #books-container {
@@ -95,6 +103,7 @@
   margin: 1em 0;
   height: 2em;
   border: 0;
+  color: #464646;
 }
 
 // MAIN - SHOW / READER
