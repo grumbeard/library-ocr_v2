@@ -6,7 +6,7 @@
 </header>
 
 <div class="reader-container reader-pdf-container">
-  <iframe src=<%= url_for(@book.content) %> class="pdf-viewer"></iframe>
+  <iframe src=<%= url_for(@book.content) %> class="pdf-viewer" allow="fullscreen"></iframe>
 </div>
 
 <% if @book.thumbnail.attached? %>
