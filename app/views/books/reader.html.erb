@@ -8,7 +8,7 @@
       <head>
         <body style="height: 100%; line-height: 24px;">
           <div class="reader-text-container" style="max-width: 80vw; height: 100%; padding: 16px 32px; margin: 0 auto; background-color: #555555; color: #EFEFEF;">
-          <% @book.text.split("\n\n").each do |line| %>
+          <% @book.text.each do |line| %>
             <p><%= line %></p>
           <% end %>
           </div>

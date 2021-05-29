@@ -54,7 +54,7 @@ filenames = [ "sample_book.pdf", "sample_book_long.pdf" ]
   if book.content
 
     # Create Text version of book
-    book.text = ''
+    book.text = []
 
     PDF::Reader.open(pdf_prefix.join('sample_book.pdf')) do |reader|
       reader.pages.each do |page|
