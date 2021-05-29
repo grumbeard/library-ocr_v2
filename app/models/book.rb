@@ -9,7 +9,7 @@ class Book < ApplicationRecord
   private
 
   def parse_pdf
-    return if text_previously_changed?
+    return if text_previously_changed? || destroyed?
 
     tmp_text = []
 
