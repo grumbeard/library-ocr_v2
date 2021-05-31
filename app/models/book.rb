@@ -19,7 +19,7 @@ class Book < ApplicationRecord
         tmp_text << page.text
       end
     end
-    update! text: tmp_text
+    update! text: tmp_text unless destroyed?
   end
 
   # def create_thumbnail
